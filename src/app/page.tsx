@@ -1,7 +1,13 @@
+"use client";
 import { getAllVenues } from "@/queries";
+import { Map } from "./_components/map";
 
-export default async function Home() {
-  const venues = await getAllVenues();
-  console.log(venues);
-  return <main className="">Hej!</main>;
+export default function Home() {
+  // const venues = await getAllVenues();
+  // console.log(venues);
+  return (
+    <main className="">
+      <Map />
+    </main>
+  );
 }
