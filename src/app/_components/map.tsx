@@ -42,7 +42,7 @@ export async function Map() {
       />
       {venues &&
         venues.map((venue) => {
-          console.log(venue);
+          //console.log(venue);
           return <CustomMarker key={venue.id} venue={venue} />;
         })}
     </MapContainer>
