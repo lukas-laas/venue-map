@@ -10,11 +10,11 @@ export default async function Page() {
       <AdminForm />
       <h2>Venues</h2>
       {venues?.map((venue) => {
-        return <p>{venue.name}</p>;
+        return <p key={venue.id}>{venue.name}</p>;
       })}
       <h2>Suggestions</h2>
       {suggestions?.map((suggestion) => {
-        return <p>{suggestion.name}</p>;
+        return <p key={suggestion.id}>{suggestion.name}</p>;
       })}
     </>
   );
