@@ -32,7 +32,7 @@ export async function Map() {
       center={[59.8512197, 17.6620915]}
       zoom={10}
       scrollWheelZoom={false}
-      style={{ height: "100%", width: "100%" }}
+      style={{ height: "100vh", width: "100%" }}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
