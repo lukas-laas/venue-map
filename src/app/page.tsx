@@ -1,13 +1,14 @@
 "use client";
 import { getAllVenues } from "@/queries";
-import { Map } from "./_components/map";
+import dynamic from "next/dynamic";
 
 export default function Home() {
-  // const venues = await getAllVenues();
-  // console.log(venues);
+  const MapWithNoSSR = dynamic(() => import("./_components/map"), {
+    ssr: false,
+  });
   return (
     <main className="">
-      <Map />
+      <MapWithNoSSR />
     </main>
   );
 }

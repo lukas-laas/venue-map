@@ -2,18 +2,18 @@ import { drizzle } from "drizzle-orm/postgres-js/driver";
 import postgres from "postgres";
 import * as schema from "./schema";
 
-const client = postgres(process.env.POSTGRES_URL!);
+// const client = postgres(process.env.POSTGRES_URL!);
 
-const db = drizzle(client, { schema });
+// const db = drizzle(client, { schema });
 
 const mockVenues = [
   {
     id: "1",
     name: "Kulturhuset femman",
     description: "Ideell förening, köp medlemskap senast dagen innan.",
+    address: "",
     updated: new Date(),
-    latitude: 0,
-    longitude: 0,
+    location: [59.8512197, 17.6620915],
   },
 ];
 
