@@ -11,7 +11,7 @@ const mockVenues = [
     id: "1",
     name: "Kulturhuset femman",
     description: "Ideell förening, köp medlemskap senast dagen innan.",
-    address: "",
+    address: "Sofielundsgatan 5",
     updated: new Date(),
     location: [59.8512197, 17.6620915],
   },
