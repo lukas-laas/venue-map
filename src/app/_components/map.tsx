@@ -3,6 +3,7 @@ import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
 import { getAllVenues } from "@/queries";
+import { latLng, LatLngExpression, LatLngTuple, PointTuple } from "leaflet";
 
 const CustomMarker = ({
   venue,
@@ -11,11 +12,11 @@ const CustomMarker = ({
     name: string;
     address: string;
     description: string;
-    location: number[];
+    coordinates: number[];
   };
 }) => {
   return (
-    <Marker position={[59.8512197, 17.6620915]}>
+    <Marker position={latLng(venue.coordinates[0], venue.coordinates[1])}>
       <Popup>
         <p> {venue.name}</p>
         <p> {venue.address}</p>
@@ -27,6 +28,7 @@ const CustomMarker = ({
 
 export async function Map() {
   const venues = await getAllVenues();
+  console.log(venues);
   return (
     <MapContainer
       center={[59.8512197, 17.6620915]}
@@ -40,6 +42,7 @@ export async function Map() {
       />
       {venues &&
         venues.map((venue) => {
+          console.log(venue);
           return <CustomMarker key={venue.id} venue={venue} />;
         })}
     </MapContainer>
