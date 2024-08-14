@@ -1,5 +1,5 @@
 "use client";
-import { getAllVenues } from "@/queries";
+
 import dynamic from "next/dynamic";
 import Link from "next/link";
 

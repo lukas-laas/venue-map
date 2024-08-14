@@ -15,7 +15,7 @@ const mockVenues = [
     description: "Ideell förening, köp medlemskap senast dagen innan.",
     address: "Sofielundsgatan 5",
     updated: new Date(),
-    coordinates: [59.85139, 17.66488],
+    coordinates: ["59.85139", "17.66488"],
   },
   {
     id: "2",
@@ -23,7 +23,7 @@ const mockVenues = [
     description: "Pub, scen finns i källaren.",
     address: "S:t Olofsgatan 9",
     updated: new Date(),
-    coordinates: [59.86361, 17.64169],
+    coordinates: ["59.86361", "17.64169"],
   },
 ];
 
@@ -80,8 +80,8 @@ export const addVenue = async (venue: any) => {
       updated: new Date(),
       coordinates: [latitude, longitude],
     });
-    //console.log(mockVenues);
-    revalidatePath("/");
+    console.log(mockVenues);
+    revalidatePath("/", "layout");
   } catch (error) {
     console.log("Failed to post venue");
   }
