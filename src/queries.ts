@@ -17,7 +17,9 @@ export const getAllVenues = async () => {
 
     return venues;
   } catch (error) {
-    console.log(error.message);
+    console.log({
+      error: error instanceof Error ? error.message : "Fail",
+    });
   }
 };
 
@@ -28,7 +30,9 @@ export const getAllSuggestions = async () => {
     if (!suggestions) throw new Error("Failed to get venues");
     return suggestions;
   } catch (error) {
-    console.log(error.message);
+    console.log({
+      error: error instanceof Error ? error.message : "Fail",
+    });
   }
 };
 
@@ -42,7 +46,9 @@ export const suggestVenue = async (suggestion: any) => {
     revalidatePath("/");
     redirect("/");
   } catch (error) {
-    console.log(error.message);
+    console.log({
+      error: error instanceof Error ? error.message : "Fail",
+    });
   }
 };
 
@@ -53,6 +59,8 @@ export const addVenue = async (venue: any) => {
     console.log(newVenue);
     revalidatePath("/", "page");
   } catch (error) {
-    console.log(error.message);
+    console.log({
+      error: error instanceof Error ? error.message : "Fail",
+    });
   }
 };
