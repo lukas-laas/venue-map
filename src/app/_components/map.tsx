@@ -88,7 +88,7 @@ export async function Map() {
           style={{ height: "100vh", width: "100%", zIndex: "10" }}
         >
           <TileLayer
-            url="https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}.png"
+            url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png"
             attribution="Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL."
           />
           {venues &&
