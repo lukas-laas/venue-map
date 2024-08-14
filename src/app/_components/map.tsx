@@ -4,9 +4,8 @@ import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
 import { getAllVenues } from "@/queries";
-import { latLng } from "leaflet";
+import { icon, latLng } from "leaflet";
 import { useEffect, useState } from "react";
-import { CustomDrawer } from "./custom-drawer";
 import {
   Drawer,
   DrawerClose,
@@ -17,6 +16,13 @@ import {
   DrawerTitle,
 } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
+
+const myIcon = icon({
+  iconUrl: "/map-pin-svgrepo-com.svg",
+  iconRetinaUrl: "/map-pin-svgrepo-com.svg",
+  iconSize: [32, 32],
+  iconAnchor: [16, 32],
+});
 
 const CustomMarker = ({
   venue,
@@ -33,6 +39,7 @@ const CustomMarker = ({
   const [isOpen, setIsOpen] = useState(false);
   return (
     <Marker
+      icon={myIcon}
       position={latLng(parseFloat(venue.longitude), parseFloat(venue.latitude))}
       eventHandlers={{
         click: (e) => {
@@ -59,9 +66,6 @@ const CustomMarker = ({
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
-      <p> {venue.name}</p>
-      <p> {venue.address}</p>
-      <p> {venue.description}</p>
     </Marker>
   );
 };
