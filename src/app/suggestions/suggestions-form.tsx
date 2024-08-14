@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { suggestVenue } from "@/queries";
-import { redirectHome } from "@/actions";
+import Link from "next/link";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -92,15 +92,17 @@ export function SuggestionsForm() {
               </FormItem>
             )}
           />
-          <div className="w-full flex justify-between">
-            <Button
-              type="button"
-              className="w-fit"
-              onClick={() => redirectHome()}
+          <div className="w-full flex justify-between ">
+            <Link
+              href="/"
+              className="w-fit py-2 px-4 text-zinc-50 rounded-md bg-zinc-950 hover:bg-zinc-800 transition-colors"
             >
               Back
-            </Button>
-            <Button type="submit" className="bg-emerald-700">
+            </Link>
+            <Button
+              type="submit"
+              className="bg-emerald-600 hover:bg-emerald-500 transition-colors"
+            >
               Submit
             </Button>
           </div>
