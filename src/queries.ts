@@ -5,7 +5,7 @@ import * as schema from "./schema";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-const client = postgres(process.env.POSTGRES_URL!);
+const client = postgres(process.env.POSTGRES_URL as string);
 
 const db = drizzle(client, { schema });
 

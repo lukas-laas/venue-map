@@ -36,7 +36,6 @@ const formSchema = z.object({
 });
 
 export function AdminForm() {
-  // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -48,7 +47,6 @@ export function AdminForm() {
     },
   });
 
-  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
     addVenue(values);
   }
