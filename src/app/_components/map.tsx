@@ -4,7 +4,7 @@ import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
 import { getAllVenues } from "@/queries";
-import { latLng, LatLngExpression, LatLngTuple, PointTuple } from "leaflet";
+import { latLng } from "leaflet";
 import { useEffect, useState } from "react";
 
 const CustomMarker = ({
@@ -58,7 +58,7 @@ export async function Map() {
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
           {venues &&
-            venues.map((venue) => {
+            venues.map((venue: any) => {
               //console.log(venue);
               return <CustomMarker key={venue.id} venue={venue} />;
             })}
