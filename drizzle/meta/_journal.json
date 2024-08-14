@@ -22,6 +22,13 @@
       "when": 1723624872191,
       "tag": "0002_common_arachne",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1723637533659,
+      "tag": "0003_lazy_texas_twister",
+      "breakpoints": true
     }
   ]
 }

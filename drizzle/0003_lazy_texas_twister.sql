@@ -1,0 +1,1 @@
+ALTER TABLE "venues" ADD COLUMN "updatedAt" date DEFAULT now();
