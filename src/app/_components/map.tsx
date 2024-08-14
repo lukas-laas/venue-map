@@ -21,6 +21,11 @@ const CustomMarker = ({
   return (
     <Marker
       position={latLng(parseFloat(venue.longitude), parseFloat(venue.latitude))}
+      eventHandlers={{
+        click: (e) => {
+          console.log("marker clicked", e);
+        },
+      }}
     >
       <Popup>
         <p> {venue.name}</p>

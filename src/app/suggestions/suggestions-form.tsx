@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { suggestVenue } from "@/queries";
+import { redirectHome } from "@/actions";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -28,7 +29,6 @@ const formSchema = z.object({
 });
 
 export function SuggestionsForm() {
-  // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -38,7 +38,6 @@ export function SuggestionsForm() {
     },
   });
 
-  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
     suggestVenue(values);
   }
@@ -93,9 +92,18 @@ export function SuggestionsForm() {
               </FormItem>
             )}
           />
-          <Button type="submit" className="self-end">
-            Submit
-          </Button>
+          <div className="w-full flex justify-between">
+            <Button
+              type="button"
+              className="w-fit"
+              onClick={() => redirectHome()}
+            >
+              Back
+            </Button>
+            <Button type="submit" className="bg-emerald-700">
+              Submit
+            </Button>
+          </div>
         </form>
       </Form>
     </div>
