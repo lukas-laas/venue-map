@@ -4,6 +4,7 @@ import postgres from "postgres";
 import * as schema from "./schema";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { redirectHome } from "./actions";
 
 const client = postgres(process.env.POSTGRES_URL as string);
 
@@ -44,7 +45,7 @@ export const suggestVenue = async (suggestion: any) => {
       .returning();
     if (!insert) throw new Error("Failed to post suggestion");
     revalidatePath("/");
-    redirect("/");
+    redirectHome();
   } catch (error) {
     console.log({
       error: error instanceof Error ? error.message : "Fail",
