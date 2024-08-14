@@ -8,6 +8,20 @@
       "when": 1723461144184,
       "tag": "0000_dapper_hannibal_king",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1723624072913,
+      "tag": "0001_sweet_shinobi_shaw",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1723624872191,
+      "tag": "0002_common_arachne",
+      "breakpoints": true
     }
   ]
 }

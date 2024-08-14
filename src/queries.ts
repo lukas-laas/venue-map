@@ -3,86 +3,56 @@ import { drizzle } from "drizzle-orm/postgres-js/driver";
 import postgres from "postgres";
 import * as schema from "./schema";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
-// const client = postgres(process.env.POSTGRES_URL!);
+const client = postgres(process.env.POSTGRES_URL!);
 
-// const db = drizzle(client, { schema });
-
-const mockVenues = [
-  {
-    id: "1",
-    name: "Kulturhuset femman",
-    description: "Ideell förening, köp medlemskap senast dagen innan.",
-    address: "Sofielundsgatan 5",
-    updated: new Date(),
-    coordinates: ["59.85139", "17.66488"],
-  },
-  {
-    id: "2",
-    name: "Puben Uppsala",
-    description: "Pub, scen finns i källaren.",
-    address: "S:t Olofsgatan 9",
-    updated: new Date(),
-    coordinates: ["59.86361", "17.64169"],
-  },
-];
-
-const mockSuggestions = [
-  {
-    id: "2",
-    name: "Puben Uppsala",
-    description: "Pub, scen finns i källaren.",
-    address: "S:t Olofsgatan 9",
-  },
-];
+const db = drizzle(client, { schema });
 
 export const getAllVenues = async () => {
   try {
     // const venues = await db.select().from(schema.venues);
-    const venues = await mockVenues;
+    const venues = await db.query.venues.findMany();
+    if (!venues) throw new Error("Failed to get venues");
+
     return venues;
   } catch (error) {
-    console.log("Failed to get venues");
+    console.log(error.message);
   }
 };
 
 export const getAllSuggestions = async () => {
   try {
     // const venues = await db.select().from(schema.venues);
-    const suggestions = await mockSuggestions;
+    const suggestions = db.query.suggestions.findMany();
+    if (!suggestions) throw new Error("Failed to get venues");
     return suggestions;
   } catch (error) {
-    console.log("Failed to get venues");
+    console.log(error.message);
   }
 };
 
 export const suggestVenue = async (suggestion: any) => {
   try {
-    // const venues = await db.select().from(schema.venues);
-    await mockSuggestions.push(suggestion);
-    console.log(mockSuggestions);
+    const insert = await db
+      .insert(schema.suggestions)
+      .values(suggestion)
+      .returning();
+    if (!insert) throw new Error("Failed to post suggestion");
     revalidatePath("/");
+    redirect("/");
   } catch (error) {
-    console.log("Failed to post suggestion");
+    console.log(error.message);
   }
 };
 
 export const addVenue = async (venue: any) => {
   try {
-    // const venues = await db.select().from(schema.venues);
-    const { name, description, address, latitude, longitude } = venue;
-
-    await mockVenues.push({
-      id: "iafg",
-      name: name,
-      description: description,
-      address: address,
-      updated: new Date(),
-      coordinates: [latitude, longitude],
-    });
-    console.log(mockVenues);
-    revalidatePath("/", "layout");
+    const newVenue = await db.insert(schema.venues).values(venue).returning();
+    if (!newVenue) throw new Error("Failed to post venue");
+    console.log(newVenue);
+    revalidatePath("/", "page");
   } catch (error) {
-    console.log("Failed to post venue");
+    console.log(error.message);
   }
 };

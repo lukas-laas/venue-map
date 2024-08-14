@@ -14,15 +14,13 @@ const CustomMarker = ({
     name: string;
     address: string;
     description: string;
-    coordinates: string[];
+    longitude: string;
+    latitude: string;
   };
 }) => {
   return (
     <Marker
-      position={latLng(
-        parseFloat(venue.coordinates[0]),
-        parseFloat(venue.coordinates[1])
-      )}
+      position={latLng(parseFloat(venue.longitude), parseFloat(venue.latitude))}
     >
       <Popup>
         <p> {venue.name}</p>
