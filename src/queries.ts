@@ -44,12 +44,13 @@ export const suggestVenue = async (suggestion: any) => {
       .values(suggestion)
       .returning();
     if (!insert) throw new Error("Failed to post suggestion");
-    revalidatePath("/");
-    redirectHome();
   } catch (error) {
     console.log({
       error: error instanceof Error ? error.message : "Fail",
     });
+  } finally {
+    revalidatePath("/");
+    redirectHome();
   }
 };
 
