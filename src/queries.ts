@@ -52,6 +52,7 @@ export const suggestVenue = async (suggestion: any) => {
     });
   } finally {
     await revalidatePath("/", "page");
+    revalidatePath("/admin");
     redirect("/");
   }
 };
