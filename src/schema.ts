@@ -1,7 +1,7 @@
 import { text, pgTable, uuid, date } from "drizzle-orm/pg-core";
 
 export const venues = pgTable("venues", {
-  id: uuid("id").defaultRandom(),
+  id: uuid("id").defaultRandom().primaryKey(),
   name: text("name").notNull(),
   description: text("description"),
   address: text("address").notNull(),
@@ -11,7 +11,7 @@ export const venues = pgTable("venues", {
 });
 
 export const suggestions = pgTable("suggestions", {
-  id: uuid("id").defaultRandom(),
+  id: uuid("id").defaultRandom().primaryKey(),
   name: text("name").notNull(),
   description: text("description"),
   address: text("address").notNull(),

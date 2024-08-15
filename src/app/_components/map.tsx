@@ -74,7 +74,6 @@ export async function Map() {
   const [venues, setVenues] = useState<any>(null);
   useEffect(() => {
     getAllVenues().then((fetchedVenues) => {
-      console.log("response", fetchedVenues);
       setVenues(fetchedVenues);
     });
   }, []);
@@ -83,7 +82,7 @@ export async function Map() {
       {venues ? (
         <MapContainer
           center={[59.8512197, 17.6620915]}
-          zoom={10}
+          zoom={5}
           scrollWheelZoom={false}
           style={{ height: "100vh", width: "100%", zIndex: "10" }}
         >
@@ -93,7 +92,6 @@ export async function Map() {
           />
           {venues &&
             venues.map((venue: any) => {
-              //console.log(venue);
               return <CustomMarker key={venue.id} venue={venue} />;
             })}
         </MapContainer>
