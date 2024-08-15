@@ -43,71 +43,68 @@ export function SuggestionsForm() {
   }
 
   return (
-    <div className="border-2 border-zinc-900 p-8 rounded-lg">
-      <h2>Suggest new venue / venue update</h2>
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 flex flex-col"
-        >
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Venue name *</FormLabel>
-                <FormControl>
-                  <Input placeholder="Name" {...field} />
-                </FormControl>
-                <FormDescription>The name of the venue.</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="address"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Address *</FormLabel>
-                <FormControl>
-                  <Input placeholder="Address" {...field} />
-                </FormControl>
-                <FormDescription>The location of the venue.</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="description"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Description</FormLabel>
-                <FormControl>
-                  <Input placeholder="Description" {...field} />
-                </FormControl>
-                <FormDescription>Description of venue.</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <div className="w-full flex justify-between ">
-            <Link
-              href="/"
-              className="w-fit py-2 px-4 text-zinc-50 rounded-md bg-zinc-950 hover:bg-zinc-800 transition-colors"
-            >
-              Back
-            </Link>
-            <Button
-              type="submit"
-              className="bg-emerald-600 hover:bg-emerald-500 transition-colors"
-            >
-              Submit
-            </Button>
-          </div>
-        </form>
-      </Form>
-    </div>
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-8 flex flex-col"
+      >
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Venue name *</FormLabel>
+              <FormControl>
+                <Input placeholder="Name" {...field} />
+              </FormControl>
+              <FormDescription>The name of the venue.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="address"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Address *</FormLabel>
+              <FormControl>
+                <Input placeholder="Address" {...field} />
+              </FormControl>
+              <FormDescription>The location of the venue.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="description"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Description</FormLabel>
+              <FormControl>
+                <Input placeholder="Description" {...field} />
+              </FormControl>
+              <FormDescription>Description of venue.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <div className="w-full flex justify-between ">
+          <Link
+            href="/"
+            className="w-fit py-2 px-4 text-zinc-50 rounded-md bg-zinc-950 hover:bg-zinc-800 transition-colors"
+          >
+            Back
+          </Link>
+          <Button
+            type="submit"
+            className="bg-emerald-600 hover:bg-emerald-500 transition-colors"
+          >
+            Submit
+          </Button>
+        </div>
+      </form>
+    </Form>
   );
 }
