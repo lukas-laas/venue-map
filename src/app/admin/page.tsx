@@ -9,7 +9,7 @@ export default async function Page() {
   return (
     <>
       <main className="p-4">
-        <h1 className="text-2xl">Admin page!</h1>
+        <h1 className="text-2xl">Welcome to the admin page!</h1>
         <section className="flex w-full max-w-4xl justify-between gap-4">
           <div className="max-w-xl w-full min-w-80">
             <h2>Add Venue</h2>
