@@ -51,7 +51,7 @@ export const suggestVenue = async (suggestion: any) => {
       error: error instanceof Error ? error.message : "Fail",
     });
   } finally {
-    await revalidatePath("/");
+    await revalidatePath("/", "page");
     redirect("/");
   }
 };
