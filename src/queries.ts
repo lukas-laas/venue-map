@@ -83,3 +83,18 @@ export const deleteVenue = async (id: any) => {
     });
   }
 };
+
+export const deleteSuggestion = async (id: any) => {
+  try {
+    const deleted = await db
+      .delete(schema.suggestions)
+      .where(eq(id, schema.suggestions.id));
+    if (!deleted) throw new Error("Failed to delete suggestion");
+    console.log(deleted);
+    revalidatePath("/", "page");
+  } catch (error) {
+    console.log({
+      error: error instanceof Error ? error.message : "Fail",
+    });
+  }
+};
