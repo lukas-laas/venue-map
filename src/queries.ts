@@ -6,6 +6,7 @@ import * as schema from "./schema";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { redirectHome } from "./actions";
+import { eq } from "drizzle-orm";
 
 const client = postgres(process.env.POSTGRES_URL as string);
 
@@ -60,6 +61,21 @@ export const addVenue = async (venue: any) => {
     const newVenue = await db.insert(schema.venues).values(venue).returning();
     if (!newVenue) throw new Error("Failed to post venue");
     console.log(newVenue);
+    revalidatePath("/", "page");
+  } catch (error) {
+    console.log({
+      error: error instanceof Error ? error.message : "Fail",
+    });
+  }
+};
+
+export const deleteVenue = async (id: any) => {
+  try {
+    const deleted = await db
+      .delete(schema.venues)
+      .where(eq(id, schema.venues.id));
+    if (!deleted) throw new Error("Failed to delete venue");
+    console.log(deleted);
     revalidatePath("/", "page");
   } catch (error) {
     console.log({

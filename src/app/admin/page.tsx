@@ -1,5 +1,6 @@
 import { getAllVenues, getAllSuggestions } from "@/queries";
 import { AdminForm } from "./admin-form";
+import { DeleteVenueButton } from "./deleteVenueButton";
 
 export default async function Page() {
   const venues = await getAllVenues();
@@ -42,6 +43,7 @@ export default async function Page() {
                     <h3 className="text-lg">{venue.name}</h3>
                     <p>{venue.address}</p>
                     <p>{venue.description}</p>
+                    <DeleteVenueButton id={venue.id} />
                   </li>
                 );
               })}
