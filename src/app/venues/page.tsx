@@ -1,4 +1,4 @@
-import { getAllVenues } from "@/queries";
+import { getAllVenues } from "@/lib/queries";
 
 export default async function Venues() {
   const venues = await getAllVenues();

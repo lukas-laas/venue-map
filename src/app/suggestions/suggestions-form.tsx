@@ -15,7 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { suggestVenue } from "@/queries";
+import { suggestVenue } from "@/lib/queries";
 import Link from "next/link";
 
 const formSchema = z.object({

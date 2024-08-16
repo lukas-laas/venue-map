@@ -5,7 +5,6 @@ import postgres from "postgres";
 import * as schema from "./schema";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { redirectHome } from "./actions";
 import { eq } from "drizzle-orm";
 
 const client = postgres(process.env.POSTGRES_URL as string);
@@ -51,7 +50,6 @@ export const suggestVenue = async (suggestion: any) => {
       error: error instanceof Error ? error.message : "Fail",
     });
   } finally {
-    await revalidatePath("/", "page");
     revalidatePath("/admin");
     redirect("/");
   }
@@ -63,6 +61,7 @@ export const addVenue = async (venue: any) => {
     if (!newVenue) throw new Error("Failed to post venue");
     console.log(newVenue);
     revalidatePath("/", "page");
+    revalidatePath("/admin");
   } catch (error) {
     console.log({
       error: error instanceof Error ? error.message : "Fail",

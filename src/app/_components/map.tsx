@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
-import { getAllVenues } from "@/queries";
+import { getAllVenues } from "@/lib/queries";
 import { icon, latLng } from "leaflet";
 import { useEffect, useState } from "react";
 import {

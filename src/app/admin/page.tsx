@@ -1,4 +1,4 @@
-import { getAllVenues, getAllSuggestions } from "@/queries";
+import { getAllVenues, getAllSuggestions } from "@/lib/queries";
 import { AdminForm } from "./admin-form";
 import { DeleteVenueButton } from "./deleteVenueButton";
 import { DeleteSuggestionButton } from "./deleteSuggestionButton";
