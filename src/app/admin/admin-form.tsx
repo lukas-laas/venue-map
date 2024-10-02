@@ -15,7 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { addVenue } from "@/lib/queries";
+import { addVenueAction } from "@/lib/actions";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -48,7 +48,7 @@ export function AdminForm() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    addVenue(values);
+    addVenueAction(values);
   }
 
   return (

@@ -3,7 +3,6 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
-import { getAllVenues } from "@/lib/queries";
 import { icon, latLng } from "leaflet";
 import { useEffect, useState } from "react";
 import {
@@ -16,6 +15,7 @@ import {
   DrawerTitle,
 } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
+import { getAllVenuesAction } from "@/lib/actions";
 
 const myIcon = icon({
   iconUrl: "/map-pin-svgrepo-com.svg",
@@ -73,7 +73,7 @@ const CustomMarker = ({
 export async function Map() {
   const [venues, setVenues] = useState<any>(null);
   useEffect(() => {
-    getAllVenues().then((fetchedVenues) => {
+    getAllVenuesAction().then((fetchedVenues) => {
       setVenues(fetchedVenues);
     });
   }, []);

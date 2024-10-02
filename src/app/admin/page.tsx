@@ -2,8 +2,13 @@ import { getAllVenues, getAllSuggestions } from "@/lib/queries";
 import { AdminForm } from "./admin-form";
 import { DeleteVenueButton } from "./deleteVenueButton";
 import { DeleteSuggestionButton } from "./deleteSuggestionButton";
+import { redirect } from "next/navigation";
 
 export default async function Page() {
+  if (process.env.ENVIORNMENT !== "DEVELOPMENT") {
+    redirect("/");
+  }
+
   const venues = await getAllVenues();
   const suggestions = await getAllSuggestions();
   return (

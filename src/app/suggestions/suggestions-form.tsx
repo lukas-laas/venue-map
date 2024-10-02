@@ -15,8 +15,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { suggestVenue } from "@/lib/queries";
 import Link from "next/link";
+import { suggestVenueAction } from "@/lib/actions";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -39,7 +39,7 @@ export function SuggestionsForm() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    suggestVenue(values);
+    suggestVenueAction(values);
   }
 
   return (

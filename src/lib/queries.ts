@@ -1,10 +1,8 @@
-"use server";
+import "server-only";
 
 import { drizzle } from "drizzle-orm/postgres-js/driver";
 import postgres from "postgres";
 import * as schema from "./schema";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 import { eq } from "drizzle-orm";
 
 const client = postgres(process.env.POSTGRES_URL as string);
@@ -49,9 +47,6 @@ export const suggestVenue = async (suggestion: any) => {
     console.log({
       error: error instanceof Error ? error.message : "Fail",
     });
-  } finally {
-    revalidatePath("/admin");
-    redirect("/");
   }
 };
 
@@ -60,8 +55,6 @@ export const addVenue = async (venue: any) => {
     const newVenue = await db.insert(schema.venues).values(venue).returning();
     if (!newVenue) throw new Error("Failed to post venue");
     console.log(newVenue);
-    revalidatePath("/", "page");
-    revalidatePath("/admin");
   } catch (error) {
     console.log({
       error: error instanceof Error ? error.message : "Fail",
@@ -76,7 +69,6 @@ export const deleteVenue = async (id: any) => {
       .where(eq(id, schema.venues.id));
     if (!deleted) throw new Error("Failed to delete venue");
     console.log(deleted);
-    revalidatePath("/", "page");
   } catch (error) {
     console.log({
       error: error instanceof Error ? error.message : "Fail",
@@ -91,7 +83,6 @@ export const deleteSuggestion = async (id: any) => {
       .where(eq(id, schema.suggestions.id));
     if (!deleted) throw new Error("Failed to delete suggestion");
     console.log(deleted);
-    revalidatePath("/", "page");
   } catch (error) {
     console.log({
       error: error instanceof Error ? error.message : "Fail",
