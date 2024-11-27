@@ -28,8 +28,10 @@ const formSchema = z.object({
   description: z.string(),
 });
 
+export type SuggestionForm = z.infer<typeof formSchema>;
+
 export function SuggestionsForm() {
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<SuggestionForm>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
@@ -38,7 +40,7 @@ export function SuggestionsForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: SuggestionForm) {
     suggestVenueAction(values);
   }
 

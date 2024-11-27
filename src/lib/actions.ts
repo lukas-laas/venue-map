@@ -10,6 +10,8 @@ import {
   suggestVenue,
 } from "./queries";
 import { redirect } from "next/navigation";
+import { sendSms } from "./utils";
+import { SuggestionForm } from "@/app/suggestions/suggestions-form";
 
 export async function getAllVenuesAction() {
   const result = await getAllVenues();
@@ -23,8 +25,9 @@ export async function getAllSuggestionsAction() {
   return result;
 }
 
-export async function suggestVenueAction(suggestion: any) {
+export async function suggestVenueAction(suggestion: SuggestionForm) {
   await suggestVenue(suggestion);
+  sendSms(suggestion);
   revalidatePath("/admin");
   redirect("/");
 }
