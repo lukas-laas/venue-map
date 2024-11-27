@@ -3,6 +3,8 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
+import MarkerClusterGroup from "react-leaflet-cluster";
+import L, { MarkerCluster } from "leaflet";
 import { icon, latLng } from "leaflet";
 import { useEffect, useState } from "react";
 import {
@@ -23,6 +25,14 @@ const myIcon = icon({
   iconSize: [32, 32],
   iconAnchor: [16, 32],
 });
+
+const createClusterCustomIcon = function (cluster: MarkerCluster) {
+  return L.divIcon({
+    html: `<div style="display: flex; align-items: center; justify-content: center; background-color: #E11D48; border-radius: 100%; width: 32px; height: 32px; color: white; font-weight: 600; font-size: 16px;">${cluster.getChildCount()}</div>`,
+    className: "custom-marker-cluster",
+    iconSize: L.point(32, 32, true),
+  });
+};
 
 const CustomMarker = ({
   venue,
@@ -90,10 +100,15 @@ export async function Map() {
             url="https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png"
             attribution="Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL."
           />
-          {venues &&
-            venues.map((venue: any) => {
-              return <CustomMarker key={venue.id} venue={venue} />;
-            })}
+          <MarkerClusterGroup
+            polygonOptions={{ fillColor: "#ffffff00", color: "#f0080000" }}
+            iconCreateFunction={createClusterCustomIcon}
+          >
+            {venues &&
+              venues.map((venue: any) => {
+                return <CustomMarker key={venue.id} venue={venue} />;
+              })}
+          </MarkerClusterGroup>
         </MapContainer>
       ) : (
         <p>Loading</p>
