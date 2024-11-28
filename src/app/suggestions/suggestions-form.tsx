@@ -3,7 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -17,6 +16,8 @@ import {
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { suggestVenueAction } from "@/lib/actions";
+import { useToast } from "@/components/hooks/use-toast";
+import { useState } from "react";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -31,6 +32,9 @@ const formSchema = z.object({
 export type SuggestionForm = z.infer<typeof formSchema>;
 
 export function SuggestionsForm() {
+  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
+
   const form = useForm<SuggestionForm>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -41,7 +45,13 @@ export function SuggestionsForm() {
   });
 
   function onSubmit(values: SuggestionForm) {
-    suggestVenueAction(values);
+    setLoading(true);
+    suggestVenueAction(values).then(() => {
+      toast({
+        description: "Suggestion posted!",
+      });
+      setLoading(false);
+    });
   }
 
   return (
@@ -101,7 +111,7 @@ export function SuggestionsForm() {
           </Link>
           <Button
             type="submit"
-            className="bg-emerald-600 hover:bg-emerald-500 transition-colors"
+            className="gap-4 bg-emerald-600 hover:bg-emerald-500 transition-colors"
           >
             Submit
           </Button>
